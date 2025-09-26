@@ -25,10 +25,12 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { CircleDot, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { auth } from '@/lib/firebase';
+import { signInWithEmailAndPassword, AuthError } from 'firebase/auth';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email address.' }),
-  password: z.string().min(1, { message: 'Password is required.' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -47,24 +49,34 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data: LoginFormValues) => {
-    startTransition(() => {
-      // In a real application, you would call a server action or API endpoint here
-      // to authenticate the user. For this demo, we'll simulate a successful login
-      // for any non-empty email and password.
-      if (data.email && data.password) {
+    startTransition(async () => {
+      try {
+        await signInWithEmailAndPassword(auth, data.email, data.password);
         toast({
           title: 'Login Successful',
           description: 'Redirecting to your dashboard...',
         });
-        // We'll use a timeout to simulate a network request
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1000);
-      } else {
+        router.push('/dashboard');
+      } catch (error) {
+        const authError = error as AuthError;
+        let errorMessage = 'An unexpected error occurred. Please try again.';
+        switch (authError.code) {
+          case 'auth/user-not-found':
+          case 'auth/wrong-password':
+          case 'auth/invalid-credential':
+            errorMessage = 'Invalid email or password. Please try again.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Please enter a valid email address.';
+            break;
+          case 'auth/user-disabled':
+            errorMessage = 'This account has been disabled.';
+            break;
+        }
         toast({
           variant: 'destructive',
           title: 'Login Failed',
-          description: 'Please check your credentials and try again.',
+          description: errorMessage,
         });
       }
     });
