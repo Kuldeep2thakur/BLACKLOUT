@@ -14,6 +14,7 @@ import {
 import { RefreshCw, Search } from 'lucide-react';
 import { revalidateDashboard } from '@/app/actions';
 import { useSidebar } from '../ui/sidebar';
+import { ThemeToggleButton } from '../theme-toggle-button';
 
 interface HeaderProps {
   search: string;
@@ -83,6 +84,7 @@ export function Header({
           <RefreshCw className={`h-4 w-4 ${isPending ? 'animate-spin' : ''}`} />
           <span className="sr-only">Refresh</span>
         </Button>
+        <ThemeToggleButton />
       </div>
     </header>
   );
