@@ -20,7 +20,7 @@ export default function Home() {
         </p>
         <Link href="/login">
           <Button size="lg" className="font-semibold text-lg py-6 px-8">
-            Employee Login
+            IT Member Login
           </Button>
         </Link>
       </div>

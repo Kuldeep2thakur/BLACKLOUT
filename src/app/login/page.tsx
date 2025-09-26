@@ -80,8 +80,8 @@ export default function LoginPage() {
                 </div>
                 <h1 className="text-xl font-headline font-semibold">Ticket Trender</h1>
             </Link>
-          <CardTitle className="text-2xl">Employee Login</CardTitle>
-          <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
+          <CardTitle className="text-2xl">IT Member Login</CardTitle>
+          <CardDescription>Enter your credentials to access the IT dashboard.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -95,7 +95,7 @@ export default function LoginPage() {
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="employee@example.com"
+                        placeholder="it-member@example.com"
                         {...field}
                       />
                     </FormControl>
