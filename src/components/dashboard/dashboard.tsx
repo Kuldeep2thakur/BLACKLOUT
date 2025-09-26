@@ -27,12 +27,14 @@ import { TicketTable } from './ticket-table';
 import { TrendAnalyzer } from './trend-analyzer';
 import { Visualizations } from './visualizations';
 import { Separator } from '../ui/separator';
+import { SettingsPage } from './settings-page';
+import { SupportPage } from './support-page';
 
 interface DashboardProps {
   initialTickets: Ticket[];
 }
 
-type ActiveView = 'Dashboard' | 'All Tickets' | 'Analytics' | 'Trend Analysis';
+type ActiveView = 'Dashboard' | 'All Tickets' | 'Analytics' | 'Trend Analysis' | 'Support' | 'Settings';
 
 export function Dashboard({ initialTickets }: DashboardProps) {
   const [tickets, setTickets] = React.useState<Ticket[]>(initialTickets);
@@ -93,13 +95,21 @@ export function Dashboard({ initialTickets }: DashboardProps) {
           <Separator className="my-2" />
            <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Support">
+              <SidebarMenuButton 
+                tooltip="Support"
+                isActive={activeView === 'Support'}
+                onClick={() => setActiveView('Support')}
+              >
                 <LifeBuoy />
                 Support
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Settings">
+              <SidebarMenuButton 
+                tooltip="Settings"
+                isActive={activeView === 'Settings'}
+                onClick={() => setActiveView('Settings')}
+              >
                 <Settings />
                 Settings
               </SidebarMenuButton>
@@ -133,6 +143,12 @@ export function Dashboard({ initialTickets }: DashboardProps) {
             )}
             {(activeView === 'Trend Analysis') && (
                 <TrendAnalyzer tickets={tickets} />
+            )}
+            {(activeView === 'Settings') && (
+                <SettingsPage />
+            )}
+            {(activeView === 'Support') && (
+                <SupportPage />
             )}
         </main>
       </SidebarInset>
