@@ -27,43 +27,56 @@ export const HeroAnimation: React.FC = () => {
     currentMount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-    const material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color('hsl(262.1 83.3% 57.8%)'), // primary
-        metalness: 0.8,
-        roughness: 0.3,
-        wireframe: true,
-        wireframeLinewidth: 1,
-    });
+    const particleCount = 5000;
+    const particles = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
 
-    const torusKnot = new THREE.Mesh(geometry, material);
-    scene.add(torusKnot);
+    for (let i = 0; i < particleCount * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 30;
+    }
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+        color: new THREE.Color('hsl(287, 58%, 53%)'), // primary
+        size: 0.05,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
     
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    scene.add(particleSystem);
     
-    camera.position.z = 30;
+    camera.position.z = 15;
 
     let mouseX = 0, mouseY = 0;
     const onMouseMove = (event: MouseEvent) => {
         const rect = currentMount.getBoundingClientRect();
-        mouseX = ((event.clientX - rect.left) / currentMount.clientWidth) * 2 - 1;
-        mouseY = -((event.clientY - rect.top) / currentMount.clientHeight) * 2 + 1;
+        mouseX = (event.clientX - rect.left - currentMount.clientWidth / 2) / (currentMount.clientWidth / 2);
+        mouseY = (event.clientY - rect.top - currentMount.clientHeight / 2) / (currentMount.clientHeight / 2);
     };
     currentMount.addEventListener('mousemove', onMouseMove);
+    
+    const clock = new THREE.Clock();
 
     const animate = () => {
       if (!rendererRef.current) return;
       requestAnimationFrame(animate);
 
-      torusKnot.rotation.x += 0.001;
-      torusKnot.rotation.y += 0.005;
+      const elapsedTime = clock.getElapsedTime();
+      
+      particleSystem.rotation.y = elapsedTime * 0.05;
+      
+      const positions = particleSystem.geometry.attributes.position.array as Float32Array;
+      for (let i = 0; i < particleCount; i++) {
+          const i3 = i * 3;
+          const x = particleSystem.geometry.attributes.position.getX(i);
+          positions[i3 + 1] += Math.sin(elapsedTime + x) * 0.001;
+      }
+      particleSystem.geometry.attributes.position.needsUpdate = true;
 
       camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
-      camera.position.y += (mouseY * 5 - camera.position.y) * 0.05;
+      camera.position.y += (-mouseY * 5 - camera.position.y) * 0.05;
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
