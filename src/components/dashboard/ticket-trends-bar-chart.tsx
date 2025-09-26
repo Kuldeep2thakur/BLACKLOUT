@@ -1,14 +1,23 @@
+
 'use client';
 
 import * as React from 'react';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import type { Ticket } from '@/types';
-import { ChartTooltipContent } from '../ui/chart';
+import { ChartContainer, ChartTooltipContent } from '../ui/chart';
+import type { ChartConfig } from '@/components/ui/chart';
 
 interface TicketTrendsBarChartProps {
   tickets: Ticket[];
 }
+
+const chartConfig = {
+  total: {
+    label: 'Tickets',
+  },
+} satisfies ChartConfig;
+
 
 export function TicketTrendsBarChart({ tickets }: TicketTrendsBarChartProps) {
   const data = React.useMemo(() => {
@@ -33,30 +42,32 @@ export function TicketTrendsBarChart({ tickets }: TicketTrendsBarChartProps) {
 
   return (
     <div className="h-64 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
-          <XAxis
-            dataKey="name"
-            stroke="hsl(var(--muted-foreground))"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-          />
-          <YAxis
-            stroke="hsl(var(--muted-foreground))"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-            allowDecimals={false}
-          />
-          <Tooltip
-            cursor={{ fill: 'hsl(var(--primary) / 0.1)' }}
-            content={<ChartTooltipContent />}
-          />
-          <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
+      <ChartContainer config={chartConfig}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
+            <XAxis
+              dataKey="name"
+              stroke="hsl(var(--muted-foreground))"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+            />
+            <YAxis
+              stroke="hsl(var(--muted-foreground))"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              allowDecimals={false}
+            />
+            <Tooltip
+              cursor={{ fill: 'hsl(var(--primary) / 0.1)' }}
+              content={<ChartTooltipContent />}
+            />
+            <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </ChartContainer>
     </div>
   );
 }
