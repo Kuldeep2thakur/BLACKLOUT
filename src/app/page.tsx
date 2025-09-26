@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, Bot, CircleDot, Ticket } from 'lucide-react';
 import Link from 'next/link';
 import { HeroAnimation } from '@/components/landing/hero-animation';
+import { ThemeToggleButton } from '@/components/theme-toggle-button';
 
 export default function Home() {
   return (
@@ -14,10 +15,11 @@ export default function Home() {
           </div>
           <span className="text-lg font-headline font-semibold">BLACKOUT</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        <nav className="ml-auto flex items-center gap-4 sm:gap-6">
           <Link href="/login">
             <Button>IT Member Login</Button>
           </Link>
+          <ThemeToggleButton />
         </nav>
       </header>
 
