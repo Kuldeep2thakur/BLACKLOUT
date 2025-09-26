@@ -22,27 +22,25 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="flex flex-col items-center lg:items-start space-y-4 text-center lg:text-left">
-               <div className="p-4 rounded-2xl bg-primary/20 text-primary">
-                <CircleDot className="h-16 w-16" />
-              </div>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter">
-                Welcome to Ticket Trender
-              </h1>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Gain valuable insights into your IT helpdesk operations. Track tickets, analyze trends, and optimize your resource allocation with our AI-powered dashboard.
-              </p>
-              <Link href="/login">
-                <Button size="lg" className="font-semibold text-lg py-6 px-8 mt-4">
-                  Access Dashboard
-                </Button>
-              </Link>
+        <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <HeroAnimation />
+          </div>
+          <div className="relative z-10 container flex flex-col items-center justify-center text-center space-y-4 px-4 md:px-6">
+            <div className="p-4 rounded-2xl bg-primary/20 text-primary">
+              <CircleDot className="h-16 w-16" />
             </div>
-            <div className="w-full h-64 md:h-96">
-                <HeroAnimation />
-            </div>
+            <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter">
+              Welcome to Ticket Trender
+            </h1>
+            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+              Gain valuable insights into your IT helpdesk operations. Track tickets, analyze trends, and optimize your resource allocation with our AI-powered dashboard.
+            </p>
+            <Link href="/login">
+              <Button size="lg" className="font-semibold text-lg py-6 px-8 mt-4">
+                Access Dashboard
+              </Button>
+            </Link>
           </div>
         </section>
 
