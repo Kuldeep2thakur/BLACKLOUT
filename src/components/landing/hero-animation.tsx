@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as THREE from 'three';
 
-export const HeroAnimation: React.FC = () => {
+const HeroAnimationClient: React.FC = () => {
   const mountRef = React.useRef<HTMLDivElement>(null);
   const rendererRef = React.useRef<THREE.WebGLRenderer | null>(null);
 
@@ -104,3 +104,13 @@ export const HeroAnimation: React.FC = () => {
 
   return <div ref={mountRef} className="h-full w-full" />;
 };
+
+export const HeroAnimation: React.FC = () => {
+    const [isClient, setIsClient] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    return isClient ? <HeroAnimationClient /> : null;
+}
