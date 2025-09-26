@@ -12,7 +12,7 @@ interface VisualizationsProps {
 export function Visualizations({ tickets }: VisualizationsProps) {
   return (
     <div className="space-y-6">
-        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+        <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-sm">
             <CardHeader>
                 <CardTitle className="font-headline">Ticket Status Distribution</CardTitle>
             </CardHeader>
@@ -22,7 +22,7 @@ export function Visualizations({ tickets }: VisualizationsProps) {
                 </div>
             </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+        <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-sm">
             <CardHeader>
                 <CardTitle className="font-headline">Monthly Ticket Trends</CardTitle>
             </CardHeader>

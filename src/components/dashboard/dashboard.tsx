@@ -11,7 +11,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarTrigger,
 } from '@/components/ui/sidebar';
 import {
   BarChart,
@@ -68,10 +67,10 @@ export function Dashboard({ initialTickets }: DashboardProps) {
       <Sidebar>
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-primary/20 text-primary">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary">
               <CircleDot className="h-7 w-7" />
             </div>
-            <h1 className="text-xl font-headline font-semibold">BLACKOUT</h1>
+            <h1 className="text-xl font-headline font-semibold text-primary-foreground">BLACKOUT</h1>
           </div>
         </SidebarHeader>
         <SidebarContent>

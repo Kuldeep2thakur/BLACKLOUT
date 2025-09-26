@@ -29,7 +29,7 @@ export const HeroAnimation: React.FC = () => {
 
     const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
     const material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color('hsl(287, 58%, 53%)'), // primary
+        color: new THREE.Color('hsl(262.1 83.3% 57.8%)'), // primary
         metalness: 0.8,
         roughness: 0.3,
         wireframe: true,

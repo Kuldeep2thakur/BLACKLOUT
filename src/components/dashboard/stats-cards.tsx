@@ -41,26 +41,26 @@ export function StatsCards({ tickets }: StatsCardsProps) {
       title: 'Resolved',
       value: resolvedTickets,
       icon: CheckCircle,
-      color: 'text-accent',
+      color: 'text-green-500',
     },
     {
       title: 'Pending',
       value: pendingTickets,
       icon: Clock,
-      color: 'text-yellow-400',
+      color: 'text-yellow-500',
     },
     {
       title: 'In Progress',
       value: inProgressTickets,
       icon: Loader,
-      color: 'text-blue-400',
+      color: 'text-blue-500',
     },
   ];
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {stats.map(stat => (
-        <Card key={stat.title} className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-colors duration-300">
+        <Card key={stat.title} className="bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
             <stat.icon className={`h-5 w-5 ${stat.color}`} />

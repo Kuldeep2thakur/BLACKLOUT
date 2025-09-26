@@ -27,7 +27,7 @@ import {
 } from '../ui/dropdown-menu';
 import { updateTicketStatus } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Avatar, AvatarFallback } from '../ui/avatar';
 import Image from 'next/image';
 
 interface TicketTableProps {
@@ -39,20 +39,20 @@ type SortKey = 'created_at' | 'status' | 'priority';
 const StatusIcon: React.FC<{ status: TicketStatus }> = ({ status }) => {
   switch (status) {
     case 'Pending':
-      return <Clock className="h-4 w-4 text-yellow-400" />;
+      return <Clock className="h-4 w-4 text-yellow-500" />;
     case 'In Progress':
-      return <Loader className="h-4 w-4 text-blue-400 animate-spin" />;
+      return <Loader className="h-4 w-4 text-blue-500 animate-spin" />;
     case 'Resolved':
-      return <CheckCircle className="h-4 w-4 text-accent" />;
+      return <CheckCircle className="h-4 w-4 text-green-500" />;
     default:
       return null;
   }
 };
 
 const statusColors: Record<TicketStatus, string> = {
-  Pending: 'bg-yellow-400/10 text-yellow-400 border-yellow-400/20',
-  'In Progress': 'bg-blue-400/10 text-blue-400 border-blue-400/20',
-  Resolved: 'bg-accent/10 text-accent border-accent/20',
+    Pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    'In Progress': 'bg-blue-100 text-blue-800 border-blue-200',
+    Resolved: 'bg-green-100 text-green-800 border-green-200',
 };
 
 const UpdateStatusDropdown: React.FC<{ ticketId: string }> = ({ ticketId }) => {
@@ -124,7 +124,7 @@ export function TicketTable({ tickets }: TicketTableProps) {
   }, [tickets, sortKey, sortOrder]);
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card/50 overflow-hidden">
+    <div className="rounded-lg border bg-card overflow-hidden shadow-sm">
         <Table>
           <TableHeader>
             <TableRow>
@@ -148,12 +148,12 @@ export function TicketTable({ tickets }: TicketTableProps) {
           </TableHeader>
           <TableBody>
             {sortedTickets.map(ticket => (
-              <TableRow key={ticket.ticket_id} className="hover:bg-primary/5">
+              <TableRow key={ticket.ticket_id} className="hover:bg-muted/50">
                 <TableCell className="font-mono text-xs">{ticket.ticket_id}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar className="h-8 w-8">
-                       <Image src={ticket.avatar} alt={ticket.employee_name} width={32} height={32} data-ai-hint="person portrait" />
+                       <Image src={ticket.avatar} alt={ticket.employee_name} width={32} height={32} data-ai-hint="person portrait" className="rounded-full" />
                       <AvatarFallback>{ticket.employee_name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <span className="font-medium">{ticket.employee_name}</span>

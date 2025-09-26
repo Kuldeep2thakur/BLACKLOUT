@@ -30,7 +30,7 @@ export function Header({
   onStatusFilterChange,
 }: HeaderProps) {
   const [isPending, startTransition] = React.useTransition();
-  const { toggleSidebar, isMobile } = useSidebar();
+  const { toggleSidebar } = useSidebar();
 
   const handleRefresh = () => {
     startTransition(async () => {
@@ -61,7 +61,7 @@ export function Header({
           <Input
             type="search"
             placeholder="Search tickets..."
-            className="w-full rounded-lg bg-background pl-9 md:w-[200px] lg:w-[320px]"
+            className="w-full rounded-lg bg-background/50 pl-9 md:w-[200px] lg:w-[320px]"
             value={search}
             onChange={e => onSearchChange(e.target.value)}
           />

@@ -47,7 +47,7 @@ export function TrendAnalyzer({ tickets }: TrendAnalyzerProps) {
   };
 
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+    <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-sm">
       <CardHeader>
         <div className="flex items-center justify-between">
             <div>

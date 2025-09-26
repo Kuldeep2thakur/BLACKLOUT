@@ -7,9 +7,9 @@ import { HeroAnimation } from '@/components/landing/hero-animation';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="px-4 lg:px-6 h-16 flex items-center">
+      <header className="px-4 lg:px-6 h-16 flex items-center bg-transparent">
         <Link href="/" className="flex items-center justify-center gap-2">
-          <div className="p-2 rounded-lg bg-primary/20 text-primary">
+          <div className="p-2 rounded-lg bg-primary/10 text-primary">
             <CircleDot className="h-6 w-6" />
           </div>
           <span className="text-lg font-headline font-semibold">BLACKOUT</span>
@@ -27,7 +27,7 @@ export default function Home() {
             <HeroAnimation />
           </div>
           <div className="relative z-10 container flex flex-col items-center justify-center text-center space-y-4 px-4 md:px-6">
-            <div className="p-4 rounded-2xl bg-primary/20 text-primary">
+            <div className="p-4 rounded-2xl bg-primary/10 text-primary">
               <CircleDot className="h-16 w-16" />
             </div>
             <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter">
@@ -53,7 +53,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3">
-              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
+              <Card className="bg-card/80 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50 shadow-sm hover:shadow-lg">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><Ticket size={32}/></div>
                   <CardTitle>Real-time Ticket Tracking</CardTitle>
@@ -62,7 +62,7 @@ export default function Home() {
                   Monitor incoming tickets, track their status, and manage assignments all in one place.
                 </CardContent>
               </Card>
-              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
+              <Card className="bg-card/80 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50 shadow-sm hover:shadow-lg">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><Bot size={32}/></div>
                   <CardTitle>AI-Powered Trend Analysis</CardTitle>
@@ -71,7 +71,7 @@ export default function Home() {
                   Leverage artificial intelligence to automatically identify recurring issues and performance trends.
                 </CardContent>
               </Card>
-              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
+              <Card className="bg-card/80 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50 shadow-sm hover:shadow-lg">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><BarChart size={32}/></div>
                   <CardTitle>Data Visualization</CardTitle>

@@ -76,9 +76,9 @@ export const TicketStatusPieChart3D: React.FC<TicketStatusPieChart3DProps> = ({ 
 
     pieGroup.rotation.x = Math.PI / 4;
     
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.position.set(5, 10, 7.5);
     scene.add(directionalLight);
     

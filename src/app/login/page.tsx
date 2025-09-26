@@ -71,11 +71,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <Card className="w-full max-w-sm mx-auto">
+    <div className="flex items-center justify-center min-h-screen bg-background p-4">
+      <Card className="w-full max-w-sm mx-auto shadow-lg bg-card/80">
         <CardHeader className="text-center">
             <Link href="/" className="flex justify-center items-center gap-2 mb-4">
-                 <div className="p-2 rounded-lg bg-primary/20 text-primary">
+                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
                     <CircleDot className="h-7 w-7" />
                 </div>
                 <h1 className="text-xl font-headline font-semibold">BLACKOUT</h1>
