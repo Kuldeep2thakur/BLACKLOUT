@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, Bot, CircleDot, Ticket } from 'lucide-react';
 import Link from 'next/link';
+import { HeroAnimation } from '@/components/landing/hero-animation';
 
 export default function Home() {
   return (
@@ -21,9 +22,9 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 text-center">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="flex flex-col items-center lg:items-start space-y-4 text-center lg:text-left">
                <div className="p-4 rounded-2xl bg-primary/20 text-primary">
                 <CircleDot className="h-16 w-16" />
               </div>
@@ -39,6 +40,9 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+            <div className="w-full h-64 md:h-96">
+                <HeroAnimation />
+            </div>
           </div>
         </section>
 
@@ -51,7 +55,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3">
-              <Card className="bg-card/50 border-border/50">
+              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><Ticket size={32}/></div>
                   <CardTitle>Real-time Ticket Tracking</CardTitle>
@@ -60,7 +64,7 @@ export default function Home() {
                   Monitor incoming tickets, track their status, and manage assignments all in one place.
                 </CardContent>
               </Card>
-              <Card className="bg-card/50 border-border/50">
+              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><Bot size={32}/></div>
                   <CardTitle>AI-Powered Trend Analysis</CardTitle>
@@ -69,7 +73,7 @@ export default function Home() {
                   Leverage artificial intelligence to automatically identify recurring issues and performance trends.
                 </CardContent>
               </Card>
-              <Card className="bg-card/50 border-border/50">
+              <Card className="bg-card/50 border-border/50 transition-all duration-300 hover:scale-105 hover:border-primary/50">
                 <CardHeader className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-primary/10 mb-4 text-primary"><BarChart size={32}/></div>
                   <CardTitle>Data Visualization</CardTitle>
