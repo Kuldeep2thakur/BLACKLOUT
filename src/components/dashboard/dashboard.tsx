@@ -120,14 +120,10 @@ export function Dashboard({ initialTickets }: DashboardProps) {
         />
         <main className="flex-1 space-y-6 p-4 md:p-6 lg:p-8">
           <StatsCards tickets={tickets} />
-          <div className="grid gap-6 lg:grid-cols-5">
-            <div className="lg:col-span-3">
-              <TicketTable tickets={filteredTickets} />
-            </div>
-            <div className="lg:col-span-2 space-y-6">
-              <Visualizations tickets={tickets} />
-              <TrendAnalyzer tickets={tickets} />
-            </div>
+          <TicketTable tickets={filteredTickets} />
+          <div className="grid gap-6 lg:grid-cols-2">
+            <Visualizations tickets={tickets} />
+            <TrendAnalyzer tickets={tickets} />
           </div>
         </main>
       </SidebarInset>
