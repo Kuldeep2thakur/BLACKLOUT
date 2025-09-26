@@ -14,7 +14,6 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import {
-  Activity,
   BarChart,
   Bot,
   CircleDot,
@@ -34,10 +33,13 @@ interface DashboardProps {
   initialTickets: Ticket[];
 }
 
+type ActiveView = 'Dashboard' | 'All Tickets' | 'Analytics' | 'Trend Analysis';
+
 export function Dashboard({ initialTickets }: DashboardProps) {
   const [tickets, setTickets] = React.useState<Ticket[]>(initialTickets);
   const [search, setSearch] = React.useState('');
   const [statusFilter, setStatusFilter] = React.useState<TicketStatus | 'all'>('all');
+  const [activeView, setActiveView] = React.useState<ActiveView>('Dashboard');
 
   React.useEffect(() => {
     setTickets(initialTickets);
@@ -53,6 +55,13 @@ export function Dashboard({ initialTickets }: DashboardProps) {
         ticket.ticket_id.toLowerCase().includes(search.toLowerCase())
       );
   }, [tickets, statusFilter, search]);
+  
+  const menuItems: { name: ActiveView, icon: React.ElementType }[] = [
+    { name: 'Dashboard', icon: Gauge },
+    { name: 'All Tickets', icon: TicketIcon },
+    { name: 'Analytics', icon: BarChart },
+    { name: 'Trend Analysis', icon: Bot },
+  ];
 
   return (
     <div className="flex min-h-screen w-full">
@@ -67,30 +76,18 @@ export function Dashboard({ initialTickets }: DashboardProps) {
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Dashboard" isActive>
-                <Gauge />
-                Dashboard
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="All Tickets">
-                <TicketIcon />
-                All Tickets
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Analytics">
-                <BarChart />
-                Analytics
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Trend Analysis">
-                <Bot />
-                Trend Analysis
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {menuItems.map(item => (
+                 <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton 
+                        tooltip={item.name} 
+                        isActive={activeView === item.name}
+                        onClick={() => setActiveView(item.name)}
+                    >
+                        <item.icon />
+                        {item.name}
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarContent>
         <SidebarGroup className="mt-auto">
@@ -119,12 +116,25 @@ export function Dashboard({ initialTickets }: DashboardProps) {
           onStatusFilterChange={setStatusFilter}
         />
         <main className="flex-1 space-y-6 p-4 md:p-6 lg:p-8">
-          <StatsCards tickets={tickets} />
-          <TicketTable tickets={filteredTickets} />
-          <div className="grid gap-6 lg:grid-cols-2">
-            <Visualizations tickets={tickets} />
-            <TrendAnalyzer tickets={tickets} />
-          </div>
+            {(activeView === 'Dashboard') && (
+                <>
+                    <StatsCards tickets={tickets} />
+                    <TicketTable tickets={filteredTickets} />
+                     <div className="grid gap-6 lg:grid-cols-2">
+                        <Visualizations tickets={tickets} />
+                        <TrendAnalyzer tickets={tickets} />
+                    </div>
+                </>
+            )}
+             {(activeView === 'All Tickets') && (
+                <TicketTable tickets={filteredTickets} />
+            )}
+             {(activeView === 'Analytics') && (
+                <Visualizations tickets={tickets} />
+            )}
+            {(activeView === 'Trend Analysis') && (
+                <TrendAnalyzer tickets={tickets} />
+            )}
         </main>
       </SidebarInset>
     </div>
