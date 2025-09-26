@@ -1,3 +1,12 @@
-export default function Home() {
-  return <></>;
+import { getTickets } from '@/app/actions';
+import { Dashboard } from '@/components/dashboard/dashboard';
+import { SidebarProvider } from '@/components/ui/sidebar';
+
+export default async function Home() {
+  const tickets = await getTickets();
+  return (
+    <SidebarProvider>
+      <Dashboard initialTickets={tickets} />
+    </SidebarProvider>
+  );
 }
