@@ -35,7 +35,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter">
               Welcome to BLACKOUT
             </h1>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+            <p className="max-w-[700px] text-foreground/80 md:text-xl">
               Gain valuable insights into your IT helpdesk operations. Track tickets, analyze trends, and optimize your resource allocation with our AI-powered dashboard.
             </p>
             <Link href="/login">
