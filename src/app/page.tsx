@@ -12,7 +12,7 @@ export default function Home() {
           <div className="p-2 rounded-lg bg-primary/20 text-primary">
             <CircleDot className="h-6 w-6" />
           </div>
-          <span className="text-lg font-headline font-semibold">Ticket Trender</span>
+          <span className="text-lg font-headline font-semibold">BLACKOUT</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link href="/login">
@@ -31,7 +31,7 @@ export default function Home() {
               <CircleDot className="h-16 w-16" />
             </div>
             <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter">
-              Welcome to Ticket Trender
+              Welcome to BLACKOUT
             </h1>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">
               Gain valuable insights into your IT helpdesk operations. Track tickets, analyze trends, and optimize your resource allocation with our AI-powered dashboard.
@@ -86,7 +86,7 @@ export default function Home() {
       </main>
 
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} Ticket Trender. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} BLACKOUT. All rights reserved.</p>
       </footer>
     </div>
   );

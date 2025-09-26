@@ -62,7 +62,7 @@ export function Dashboard({ initialTickets }: DashboardProps) {
             <div className="p-2 rounded-lg bg-primary/20 text-primary">
               <CircleDot className="h-7 w-7" />
             </div>
-            <h1 className="text-xl font-headline font-semibold">Ticket Trender</h1>
+            <h1 className="text-xl font-headline font-semibold">BLACKOUT</h1>
           </div>
         </SidebarHeader>
         <SidebarContent>
