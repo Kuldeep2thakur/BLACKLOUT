@@ -58,18 +58,23 @@ export function StatsCards({ tickets }: StatsCardsProps) {
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {stats.map(stat => (
-        <Card key={stat.title} className="bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-lg">
+        <Card
+          key={stat.title}
+          className="bg-gradient-to-br from-white/60 to-blue-100/60 border-0 shadow-xl hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 backdrop-blur-lg cursor-pointer group"
+        >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
-            <stat.icon className={`h-5 w-5 ${stat.color}`} />
+            <CardTitle className="text-base font-semibold text-gray-700 group-hover:text-primary transition-colors duration-200">{stat.title}</CardTitle>
+            <span className="rounded-full p-2 bg-white/80 group-hover:bg-primary/90 group-hover:text-white transition-colors duration-200 shadow">
+              <stat.icon className={`h-6 w-6 ${stat.color}`} />
+            </span>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-4xl font-extrabold text-gray-900 group-hover:text-primary transition-colors duration-200">
               <AnimatedNumber value={stat.value} />
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-gray-500 group-hover:text-primary/80 transition-colors duration-200">
               {stat.title === 'Total Tickets' ? 'All-time tickets' : `Currently ${stat.title.toLowerCase()}`}
             </p>
           </CardContent>

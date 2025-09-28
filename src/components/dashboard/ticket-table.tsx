@@ -124,66 +124,69 @@ export function TicketTable({ tickets }: TicketTableProps) {
   }, [tickets, sortKey, sortOrder]);
 
   return (
-    <div className="rounded-lg border bg-card overflow-hidden shadow-sm">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Ticket ID</TableHead>
-              <TableHead>Employee</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead>
-                 <Button variant="ghost" onClick={() => handleSort('status')}>
-                  Status
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead>
-                <Button variant="ghost" onClick={() => handleSort('created_at')}>
-                  Created
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+    <div className="rounded-2xl border-0 bg-white/70 backdrop-blur-lg overflow-hidden shadow-xl">
+      <Table>
+        <TableHeader>
+          <TableRow className="bg-gradient-to-r from-blue-100/60 to-white/60">
+            <TableHead className="font-bold text-gray-700">Ticket ID</TableHead>
+            <TableHead className="font-bold text-gray-700">Employee</TableHead>
+            <TableHead className="font-bold text-gray-700">Description</TableHead>
+            <TableHead>
+              <Button variant="ghost" onClick={() => handleSort('status')} className="text-gray-700">
+                Status
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            </TableHead>
+            <TableHead>
+              <Button variant="ghost" onClick={() => handleSort('created_at')} className="text-gray-700">
+                Created
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            </TableHead>
+            <TableHead className="text-right font-bold text-gray-700">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {sortedTickets.map(ticket => (
+            <TableRow
+              key={ticket.ticket_id}
+              className="hover:bg-blue-50/60 transition-colors duration-200 group"
+            >
+              <TableCell className="font-mono text-xs text-blue-900 group-hover:text-primary">{ticket.ticket_id}</TableCell>
+              <TableCell>
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-8 w-8">
+                    <Image src={ticket.avatar} alt={ticket.employee_name} width={32} height={32} data-ai-hint="person portrait" className="rounded-full" />
+                    <AvatarFallback>{ticket.employee_name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium text-gray-800 group-hover:text-primary">{ticket.employee_name}</span>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="font-medium text-gray-700 group-hover:text-primary">{ticket.category}</div>
+                <div className="text-sm text-gray-500 truncate max-w-xs group-hover:text-primary/80">{ticket.description}</div>
+              </TableCell>
+              <TableCell>
+                <Badge variant="outline" className={statusColors[ticket.status] + ' border-2 group-hover:border-primary/60'}>
+                  <StatusIcon status={ticket.status} />
+                  <span className="ml-2">{ticket.status}</span>
+                </Badge>
+              </TableCell>
+              <TableCell className="text-gray-700">{format(parseISO(ticket.created_at), 'MMM d, yyyy')}</TableCell>
+              <TableCell className="text-right">
+                <UpdateStatusDropdown ticketId={ticket.ticket_id} />
+              </TableCell>
             </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedTickets.map(ticket => (
-              <TableRow key={ticket.ticket_id} className="hover:bg-muted/50">
-                <TableCell className="font-mono text-xs">{ticket.ticket_id}</TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-8 w-8">
-                       <Image src={ticket.avatar} alt={ticket.employee_name} width={32} height={32} data-ai-hint="person portrait" className="rounded-full" />
-                      <AvatarFallback>{ticket.employee_name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <span className="font-medium">{ticket.employee_name}</span>
-                  </div>
-                </TableCell>
-                <TableCell>
-                    <div className="font-medium">{ticket.category}</div>
-                    <div className="text-sm text-muted-foreground truncate max-w-xs">{ticket.description}</div>
-                </TableCell>
-                <TableCell>
-                  <Badge variant="outline" className={statusColors[ticket.status]}>
-                    <StatusIcon status={ticket.status} />
-                    <span className="ml-2">{ticket.status}</span>
-                  </Badge>
-                </TableCell>
-                <TableCell>{format(parseISO(ticket.created_at), 'MMM d, yyyy')}</TableCell>
-                <TableCell className="text-right">
-                    <UpdateStatusDropdown ticketId={ticket.ticket_id} />
-                </TableCell>
-              </TableRow>
-            ))}
-             {sortedTickets.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={6} className="h-24 text-center">
-                  No tickets found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+          ))}
+          {sortedTickets.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={6} className="h-24 text-center text-gray-500">
+                No tickets found.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 }

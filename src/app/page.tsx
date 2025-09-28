@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Bot, CircleDot, Ticket } from 'lucide-react';
+import { BarChart, Bot, Ticket } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { HeroAnimation } from '@/components/landing/hero-animation';
 import { ThemeToggleButton } from '@/components/theme-toggle-button';
@@ -10,8 +11,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="px-4 lg:px-6 h-16 flex items-center bg-transparent">
         <Link href="/" className="flex items-center justify-center gap-2">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary">
-            <CircleDot className="h-6 w-6" />
+          <div className="p-1 rounded-full bg-gradient-to-tr from-primary via-blue-400 to-purple-500 shadow-xl border-2 border-white/70 hover:scale-105 transition-transform duration-200">
+            <Image src="/blackoutlogo.jpg" alt="Blackout Logo" width={36} height={36} className="rounded-full object-cover shadow-lg ring-2 ring-blue-300/40" priority />
           </div>
           <span className="text-lg font-headline font-semibold">BLACKOUT</span>
         </Link>
@@ -29,8 +30,8 @@ export default function Home() {
             <HeroAnimation />
           </div>
           <div className="relative z-10 container flex flex-col items-center justify-center text-center space-y-4 px-4 md:px-6">
-            <div className="p-4 rounded-2xl bg-primary/10 text-primary">
-              <CircleDot className="h-16 w-16" />
+            <div className="p-2 rounded-full bg-gradient-to-tr from-primary via-blue-400 to-purple-500 shadow-2xl border-4 border-white/80 hover:scale-105 transition-transform duration-200">
+              <Image src="/blackoutlogo.jpg" alt="Blackout Logo" width={72} height={72} className="rounded-full object-cover shadow-lg ring-2 ring-blue-300/40" priority />
             </div>
             <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter text-foreground">
               Welcome to BLACKOUT

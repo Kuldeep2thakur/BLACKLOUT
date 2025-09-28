@@ -23,7 +23,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { CircleDot, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword, AuthError } from 'firebase/auth';
@@ -87,8 +88,8 @@ export default function LoginPage() {
       <Card className="w-full max-w-sm mx-auto shadow-lg bg-card/80">
         <CardHeader className="text-center">
             <Link href="/" className="flex justify-center items-center gap-2 mb-4">
-                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <CircleDot className="h-7 w-7" />
+                <div className="p-1 rounded-full bg-gradient-to-tr from-primary via-blue-400 to-purple-500 shadow-xl border-2 border-white/70 hover:scale-105 transition-transform duration-200">
+                  <Image src="/blackoutlogo.jpg" alt="Blackout Logo" width={36} height={36} className="rounded-full object-cover shadow-lg ring-2 ring-blue-300/40" priority />
                 </div>
                 <h1 className="text-xl font-headline font-semibold">BLACKOUT</h1>
             </Link>
@@ -134,6 +135,13 @@ export default function LoginPage() {
               </Button>
             </form>
           </Form>
+          <div className="mt-6 flex justify-center">
+            <Link href="/">
+              <Button type="button" variant="outline">
+                Go Back to Home
+              </Button>
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
